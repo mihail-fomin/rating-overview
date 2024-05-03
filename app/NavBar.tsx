@@ -9,9 +9,11 @@ import Skeleton from '@/app/components/Skeleton'
 const NavBar = () => {
   return (
     <nav className="border-b mb-5 px-5 py-3">
-      <Container>
+      <Container size="3">
         <Flex justify="between" align="center" mt="3">
-          <Text>Дашборд</Text>
+          <Link href="/">
+            <Text>Дашборд</Text>
+          </Link>
           <AuthStatus />
         </Flex>
       </Container>
