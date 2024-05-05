@@ -25,7 +25,7 @@ export default function RootLayout({
         <AuthProvider>
           <Theme accentColor="indigo" appearance="dark">
             <NavBar />
-            <Container size="3">{children}</Container>
+            <Container size="2">{children}</Container>
           </Theme>
         </AuthProvider>
       </body>
