@@ -1,17 +1,15 @@
-import { Card, Text, Flex, Button } from '@radix-ui/themes'
+import { Card, Text, Flex } from '@radix-ui/themes'
 import prisma from './utlis/connect'
 import { Worker } from '@prisma/client'
 import Link from 'next/link'
-import { PersonIcon } from '@radix-ui/react-icons'
+import CreatePersonButton from './components/CreatePersonButton'
 
 export default async function Home() {
   const workers: Worker[] = await prisma.worker.findMany()
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4">
-      <Link href='/cards/new'>
-        <Button>Добавить <PersonIcon /></Button>
-      </Link>
+      <CreatePersonButton />
 
       <Flex gap="3" mt='3'>
         {workers.map((worker: Worker) => (
