@@ -6,6 +6,7 @@ import { getServerSession } from 'next-auth'
 import authOptions from '@/app/auth/authOptions'
 import { Text, Box, Flex } from '@radix-ui/themes'
 import Link from 'next/link'
+import DeleteUserButton from '../_components/DeleteUserButton'
 
 type Props = { params: { id: string } }
 
@@ -23,7 +24,7 @@ const WorkerDetailPage = async ({ params }: Props) => {
         <Box>
           <Flex gap="4" mt="2">
             <Link href={`/cards/edit/${worker.id}`}>Изменить</Link>
-            <Link href={`/cards/delete/${worker.id}`}>Удалить</Link>
+            <DeleteUserButton workerId={worker.id}/>
           </Flex>
         </Box>
       )}

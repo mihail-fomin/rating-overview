@@ -22,3 +22,20 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
   return NextResponse.json(updatedWorker)
 }
+
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+    const session = await getServerSession(authOptions)
+    if (!session) return NextResponse.json({}, { status: 401 })
+
+    const worker = await prisma.worker.findUnique({ where: { id: params.id } })
+  
+    if (!worker) {
+      return NextResponse.json({ error: 'Worker not found' }, { status: 404 })
+    }
+  
+    await prisma.worker.delete({
+        where: { id: worker.id },
+      })
+  
+    return NextResponse.json({})
+  }
