@@ -7,13 +7,16 @@ import { getServerSession } from 'next-auth'
 import authOptions from '@/app/auth/authOptions'
 
 const CreatePersonButton = async () => {
-  
-    const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
 
-    return ( session && 
-    <Link href='/cards/new'>
-    <Button>Добавить <PersonIcon /></Button>
-    </Link>
+  return (
+    session && (
+      <Link href="/cards/new">
+        <Button>
+          Добавить <PersonIcon />
+        </Button>
+      </Link>
+    )
   )
 }
 

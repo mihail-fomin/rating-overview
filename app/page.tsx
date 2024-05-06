@@ -11,7 +11,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center p-4">
       <CreatePersonButton />
 
-      <Flex gap="3" mt='3'>
+      <Flex gap="3" mt="3">
         {workers.map((worker: Worker) => (
           <Link key={worker.id} href={`/cards/${worker.id}`}>
             <Card className="min-w-[16rem] p-2">
