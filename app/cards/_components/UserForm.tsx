@@ -7,6 +7,7 @@ import { Controller, useForm, useFormContext } from 'react-hook-form'
 import toast from 'react-hot-toast/headless'
 import { Button, Select, TextField } from '@radix-ui/themes'
 import { Worker } from '@prisma/client'
+import CustomDatePicker from './DatePicker'
 
 interface DepartmentSelectProps {
   name: string
@@ -59,11 +60,12 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
   return (
     <form className="max-w-xl flex flex-col gap-2" onSubmit={onSubmit}>
       <TextField.Root defaultValue={worker?.fullName} placeholder="Имя" {...register('fullName')} />
-      <TextField.Root
+      <CustomDatePicker control={control}/>
+            {/* <TextField.Root
         defaultValue={worker?.birthDate.toLocaleDateString()}
         placeholder="Дата"
         {...register('birthDate')}
-      />
+      /> */}
       <TextField.Root defaultValue={worker?.phone} placeholder="Телефон" {...register('phone')} />
 
       <SelectField
