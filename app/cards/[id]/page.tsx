@@ -24,7 +24,7 @@ const WorkerDetailPage = async ({ params }: Props) => {
         <Box>
           <Flex gap="4" mt="2">
             <Link href={`/cards/edit/${worker.id}`}>Изменить</Link>
-            <DeleteUserButton workerId={worker.id}/>
+            <DeleteUserButton workerId={worker.id} />
           </Flex>
         </Box>
       )}

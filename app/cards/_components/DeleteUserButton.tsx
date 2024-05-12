@@ -7,24 +7,23 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import Spinner from '@/app/components/Spinner'
 
-
 const DeleteUserButton = ({ workerId }: { workerId: string }) => {
-    const router = useRouter()
-    const [error, setError] = React.useState<boolean>(false)
-    const [isDeleting, setIsDeleting] = React.useState<boolean>(false)
-  
-    const handleDeleteButton = async () => {
-      try {
-        setIsDeleting(true)
-        await axios.delete('/api/cards/' + workerId)
-        toast.success('Карточка была удалена')
-        router.push('/')
-        router.refresh()
-      } catch (error) {
-        setIsDeleting(false)
-        setError(true)
-      }
+  const router = useRouter()
+  const [error, setError] = React.useState<boolean>(false)
+  const [isDeleting, setIsDeleting] = React.useState<boolean>(false)
+
+  const handleDeleteButton = async () => {
+    try {
+      setIsDeleting(true)
+      await axios.delete('/api/cards/' + workerId)
+      toast.success('Карточка была удалена')
+      router.push('/')
+      router.refresh()
+    } catch (error) {
+      setIsDeleting(false)
+      setError(true)
     }
+  }
 
   return (
     <>
@@ -68,4 +67,3 @@ const DeleteUserButton = ({ workerId }: { workerId: string }) => {
 }
 
 export default DeleteUserButton
-

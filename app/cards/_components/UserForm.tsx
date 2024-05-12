@@ -60,12 +60,8 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
   return (
     <form className="max-w-xl flex flex-col gap-2" onSubmit={onSubmit}>
       <TextField.Root defaultValue={worker?.fullName} placeholder="Имя" {...register('fullName')} />
-      <CustomDatePicker control={control}/>
-            {/* <TextField.Root
-        defaultValue={worker?.birthDate.toLocaleDateString()}
-        placeholder="Дата"
-        {...register('birthDate')}
-      /> */}
+      <CustomDatePicker control={control} />
+
       <TextField.Root defaultValue={worker?.phone} placeholder="Телефон" {...register('phone')} />
 
       <SelectField
