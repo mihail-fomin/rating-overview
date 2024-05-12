@@ -15,13 +15,14 @@ const CustomDatePicker = ({ control }: Props) => {
       name='birthDate'
       render={({ field }) => (
         <DatePicker
-          selected={field.value ? field.value : new Date()}
-          onChange={(date) => field.onChange(date)}
-          dateFormat="dd-MM-yyyy"
-          showYearDropdown
-          showMonthDropdown
-          dropdownMode="select"
-          className='date-picker'
+        selected={field.value ? field.value : new Date()}
+        onChange={(date) => field.onChange(date)}
+        dateFormat='dd.MM.yyyy'
+        className='date-picker'
+        showMonthDropdown
+        showYearDropdown
+        minDate={new Date(1900, 0 ,1)}
+        maxDate={new Date()}
         />
       )}
     />
