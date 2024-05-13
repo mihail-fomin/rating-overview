@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { Button, TextField, Callout } from '@radix-ui/themes'
+import { Button, Callout } from '@radix-ui/themes'
 import CustomDatePicker from './DatePicker'
 
 import { Worker } from '@prisma/client'
@@ -13,6 +13,7 @@ import { SelectField } from './SelectField'
 import Spinner from '@/app/components/Spinner'
 import FullNameInput from './FullNameInput'
 import PhoneInput from './PhoneInput'
+import RatingStars from './RatingStars'
 
 const departments = [
   { label: 'Клиентский', value: 'CLIENT' },
@@ -34,12 +35,14 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
     formState: { errors },
   } = useForm<Worker>()
 
-  console.log('errors: ', errors)
   const [error, setError] = useState('')
   const [isSubmitting, setSubmitting] = useState(false)
 
+  const [rating, setRating] = useState(worker?.ranking || 0)
+
   const onSubmit = handleSubmit(async (data) => {
     try {
+      data.ranking = rating
       setSubmitting(true)
       if (worker) {
         await axios.patch('/api/cards/' + worker.id, data)
@@ -48,7 +51,6 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
         if (!data.birthDate) {
           data.birthDate = new Date()
         }
-
         await axios.post('/api/cards', data)
         toast.success('Карточка была создана')
       }
@@ -87,7 +89,7 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
           defaultValue={worker?.position}
           options={positions}
         />
-        <TextField.Root defaultValue={worker?.ranking} placeholder="Рейтинг" {...register('ranking')} />
+        <RatingStars rating={rating} onChange={setRating} />
         <Button type="submit" disabled={isSubmitting}>
           {worker ? 'Обновить карточку' : 'Создать карточку'} {isSubmitting && <Spinner />}
         </Button>

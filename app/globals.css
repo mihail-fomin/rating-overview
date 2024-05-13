@@ -30,3 +30,7 @@ body {
 .date-picker {
   @apply w-full rounded border-0 py-1.5 px-2  text-[rgba(234,234,239,255)] bg-[rgba(13,13,14,255)] ring-1 ring-inset ring-[rgba(67,72,78,255)] focus:bg-[rgba(17,20,35,255)] sm:text-sm sm:leading-6;
 }
+
+.rating-star {
+  @apply cursor-pointer h-8 w-12 hover:h-12 hover:w-12 transition;
+}
