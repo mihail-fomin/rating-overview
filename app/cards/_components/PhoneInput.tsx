@@ -12,9 +12,9 @@ type Props = {
   register: any
 }
 
-const phoneRegEx = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/
+const phoneRegEx = /^((\+7)[\s-]?)?(\(?\d{3}\)?[\s-]?)?[\d\- ]{7,10}$/
 
-const PhoneInput = ({ phoneNumber, errors, control, register }: Props) => {
+const PhoneInput = ({ phoneNumber, errors, control }: Props) => {
   return (
     <>
       <Controller
