@@ -29,7 +29,7 @@ const PhoneInput = ({ phoneNumber, errors, control }: Props) => {
           },
         }}
         render={({ field }) => (
-          <InputMask mask="+7 (999) 999-99-99" value={field.value} onChange={field.onChange}>
+          <InputMask mask="+7 (999) 999-99-99" alwaysShowMask={true} value={field.value} onChange={field.onChange}>
             <TextField.Root />
           </InputMask>
         )}
