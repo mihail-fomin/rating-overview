@@ -1,11 +1,11 @@
+import React, { cache } from 'react'
 import prisma from '@/app/utlis/connect'
-import React from 'react'
-import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import { getServerSession } from 'next-auth'
+import Link from 'next/link'
+
 import authOptions from '@/app/auth/authOptions'
 import { Text, Box, Flex } from '@radix-ui/themes'
-import Link from 'next/link'
 import DeleteUserButton from '../_components/DeleteUserButton'
 
 type Props = { params: { id: string } }

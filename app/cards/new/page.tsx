@@ -1,8 +1,10 @@
 import React from 'react'
-import UserForm from '../_components/UserForm'
+import type { Metadata } from 'next'
 import { getServerSession } from 'next-auth'
-import authOptions from '@/app/auth/authOptions'
 import { redirect } from 'next/navigation'
+
+import authOptions from '@/app/auth/authOptions'
+import UserForm from '../_components/UserForm'
 
 const NewWorkerPage = async () => {
   const session = await getServerSession(authOptions)
@@ -14,3 +16,8 @@ const NewWorkerPage = async () => {
 }
 
 export default NewWorkerPage
+
+export const metadata: Metadata = {
+  title: 'Добавить пользователя',
+  description: 'Добавить нового пользователя',
+}

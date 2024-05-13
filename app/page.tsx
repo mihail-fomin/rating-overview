@@ -1,7 +1,8 @@
-import { Card, Text, Flex } from '@radix-ui/themes'
 import prisma from './utlis/connect'
-import { Worker } from '@prisma/client'
 import Link from 'next/link'
+
+import { Card, Text, Flex } from '@radix-ui/themes'
+import { Worker } from '@prisma/client'
 import CreatePersonButton from './components/CreatePersonButton'
 import RatingStars from './components/RatingStars'
 
