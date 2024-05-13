@@ -9,11 +9,9 @@ import { Button, Select, TextField } from '@radix-ui/themes'
 import { Worker } from '@prisma/client'
 import CustomDatePicker from './DatePicker'
 
-interface DepartmentSelectProps {
-  name: string
-  control: any
-  defaultValue: string
-}
+import { Worker } from '@prisma/client'
+import { SelectField } from './SelectField'
+import Spinner from '@/app/components/Spinner'
 
 const departments = [
   { label: 'Клиентский', value: 'CLIENT' },
