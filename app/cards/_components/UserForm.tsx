@@ -11,6 +11,8 @@ import CustomDatePicker from './DatePicker'
 import { Worker } from '@prisma/client'
 import { SelectField } from './SelectField'
 import Spinner from '@/app/components/Spinner'
+import FullNameInput from './FullNameInput'
+import PhoneInput from './PhoneInput'
 
 const departments = [
   { label: 'Клиентский', value: 'CLIENT' },
@@ -32,6 +34,7 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
     formState: { errors },
   } = useForm<Worker>()
 
+  console.log('errors: ', errors)
   const [error, setError] = useState('')
   const [isSubmitting, setSubmitting] = useState(false)
 
@@ -42,6 +45,10 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
         await axios.patch('/api/cards/' + worker.id, data)
         toast.success('Карточка была обновлена')
       } else {
+        if (!data.birthDate) {
+          data.birthDate = new Date()
+        }
+
         await axios.post('/api/cards', data)
         toast.success('Карточка была создана')
       }
@@ -55,64 +62,39 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
   })
 
   return (
-    <form className="max-w-xl flex flex-col gap-2" onSubmit={onSubmit}>
-      <TextField.Root defaultValue={worker?.fullName} placeholder="Имя" {...register('fullName')} />
-      <CustomDatePicker control={control} />
+    <div className="max-w-xl mx-auto px-4">
+      {error && (
+        <Callout.Root color="red" className="mb-5">
+          <Callout.Text>{error}</Callout.Text>
+        </Callout.Root>
+      )}
 
-      <TextField.Root defaultValue={worker?.phone} placeholder="Телефон" {...register('phone')} />
-
-      <SelectField
-        name="department"
-        placeholder="Отдел"
-        control={control}
-        defaultValue={worker?.department}
-        options={departments}
-      />
-      <SelectField
-        name="position"
-        placeholder="Позиция"
-        control={control}
-        defaultValue={worker?.position}
-        options={positions}
-      />
-
-      <TextField.Root defaultValue={worker?.ranking} placeholder="Рейтинг" {...register('ranking')} />
-      <Button type="submit">Отправить</Button>
-    </form>
+      <form className="max-w-xl flex flex-col gap-2" onSubmit={onSubmit}>
+        <FullNameInput fullName={worker?.fullName} errors={errors} register={register} />
+        <CustomDatePicker control={control} />
+        {/* <TextField.Root defaultValue={worker?.phone} placeholder="Телефон" {...register('phone')} /> */}
+        <PhoneInput phoneNumber={worker?.phone} errors={errors} control={control} register={register} />
+        <SelectField
+          name="department"
+          placeholder="Отдел"
+          control={control}
+          defaultValue={worker?.department}
+          options={departments}
+        />
+        <SelectField
+          name="position"
+          placeholder="Позиция"
+          control={control}
+          defaultValue={worker?.position}
+          options={positions}
+        />
+        <TextField.Root defaultValue={worker?.ranking} placeholder="Рейтинг" {...register('ranking')} />
+        <Button type="submit" disabled={isSubmitting}>
+          {worker ? 'Обновить карточку' : 'Создать карточку'} {isSubmitting && <Spinner />}
+        </Button>
+      </form>
+    </div>
   )
 }
 
 export default UserForm
-
-interface SelectFieldProps {
-  name: string
-  placeholder: string
-  control: any
-  defaultValue: string | undefined
-  options: { label: string; value: string }[]
-}
-
-const SelectField = React.forwardRef<HTMLDivElement, SelectFieldProps>(
-  ({ name, placeholder, control, defaultValue, options }, ref) => {
-    return (
-      <Controller
-        name={name}
-        control={control}
-        defaultValue={defaultValue}
-        render={({ field }) => (
-          // @ts-ignore
-          <Select.Root {...field} onValueChange={field.onChange} ref={ref}>
-            <Select.Trigger placeholder={placeholder} />
-            <Select.Content>
-              {options.map((option) => (
-                <Select.Item key={option.value} value={option.value}>
-                  {option.label}
-                </Select.Item>
-              ))}
-            </Select.Content>
-          </Select.Root>
-        )}
-      />
-    )
-  },
-)
