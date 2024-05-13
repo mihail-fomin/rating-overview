@@ -14,9 +14,9 @@ export default async function Home() {
       <Flex gap="3" mt="3" wrap="wrap">
         {workers.map((worker: Worker) => (
           <Link key={worker.id} href={`/cards/${worker.id}`}>
-            <Card className="min-w-[16rem] p-2">
+            <Card className="min-w-[16rem] p-2 transition hover:bg-slate-900">
               <Text as="p">{worker.fullName}</Text>
-              <Text as="p">{worker.birthDate.toLocaleDateString()}</Text>
+              <Text as="p">{worker.birthDate.toLocaleDateString('ru-RU')}</Text>
               <Text as="p">{worker.phone}</Text>
               <Text as="p">{worker.department}</Text>
               <Text as="p">{worker.position}</Text>
