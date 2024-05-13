@@ -12,7 +12,7 @@ const NavBar = () => {
       <Container size="3">
         <Flex justify="between" align="center" mt="3">
           <Link href="/">
-            <Text>Дашборд</Text>
+            <Text className="hover:text-gray-300">Дашборд</Text>
           </Link>
           <AuthStatus />
         </Flex>
