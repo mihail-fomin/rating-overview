@@ -6,7 +6,7 @@ type Props = {
   onChange: any
 }
 
-const RatingStars = ({ rating, onChange }: Props) => {
+const EditRatingStars = ({ rating, onChange }: Props) => {
   const [hoverRating, setHoverRating] = useState(rating)
 
   const handleMouseMove = (newValue: number) => {
@@ -36,4 +36,4 @@ const RatingStars = ({ rating, onChange }: Props) => {
   )
 }
 
-export default RatingStars
+export default EditRatingStars

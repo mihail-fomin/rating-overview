@@ -13,7 +13,7 @@ import { SelectField } from './SelectField'
 import Spinner from '@/app/components/Spinner'
 import FullNameInput from './FullNameInput'
 import PhoneInput from './PhoneInput'
-import RatingStars from './RatingStars'
+import EditRatingStars from './EditRatingStars'
 
 const departments = [
   { label: 'Клиентский', value: 'CLIENT' },
@@ -89,7 +89,7 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
           defaultValue={worker?.position}
           options={positions}
         />
-        <RatingStars rating={rating} onChange={setRating} />
+        <EditRatingStars rating={rating} onChange={setRating} />
         <Button type="submit" disabled={isSubmitting}>
           {worker ? 'Обновить карточку' : 'Создать карточку'} {isSubmitting && <Spinner />}
         </Button>
