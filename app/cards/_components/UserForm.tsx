@@ -72,7 +72,6 @@ const UserForm = ({ worker }: { worker?: Worker }) => {
       <form className="max-w-xl flex flex-col gap-2" onSubmit={onSubmit}>
         <FullNameInput fullName={worker?.fullName} errors={errors} register={register} />
         <CustomDatePicker control={control} />
-        {/* <TextField.Root defaultValue={worker?.phone} placeholder="Телефон" {...register('phone')} /> */}
         <PhoneInput phoneNumber={worker?.phone} errors={errors} control={control} register={register} />
         <SelectField
           name="department"
