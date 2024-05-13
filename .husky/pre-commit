@@ -1,0 +1,4 @@
+yarn prettier
+yarn lint
+
+exit 1
