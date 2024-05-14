@@ -14,17 +14,7 @@ import Spinner from '@/app/components/Spinner'
 import FullNameInput from './FullNameInput'
 import PhoneInput from './PhoneInput'
 import EditRatingStars from './EditRatingStars'
-
-const departments = [
-  { label: 'Клиентский', value: 'CLIENT' },
-  { label: 'Продажи', value: 'SALES' },
-  { label: 'Разработка', value: 'DEVELOPMENT' },
-]
-
-const positions = [
-  { label: 'Сотрудник', value: 'WORKER' },
-  { label: 'Руководитель', value: 'LEADER' },
-]
+import { departments, positions } from '@/app/utlis/staticData'
 
 const UserForm = ({ worker }: { worker?: Worker }) => {
   const router = useRouter()

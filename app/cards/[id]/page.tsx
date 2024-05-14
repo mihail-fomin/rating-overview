@@ -5,8 +5,10 @@ import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 
 import authOptions from '@/app/auth/authOptions'
-import { Text, Box, Flex } from '@radix-ui/themes'
+import { Text, Box, Flex, Button, Card } from '@radix-ui/themes'
 import DeleteUserButton from '../_components/DeleteUserButton'
+import RatingStars from '@/app/components/RatingStars'
+import { getDepartmentLabel, getPositionsLabel } from '@/app/utlis/staticData'
 
 type Props = { params: { id: string } }
 
@@ -23,12 +25,23 @@ const WorkerDetailPage = async ({ params }: Props) => {
       {session && (
         <Box>
           <Flex gap="4" mt="2">
-            <Link href={`/cards/edit/${worker.id}`}>Изменить</Link>
+            <Link href={`/cards/edit/${worker.id}`}>
+              <Button>Редактировать</Button>
+            </Link>
             <DeleteUserButton workerId={worker.id} />
           </Flex>
         </Box>
       )}
-      <Text as="p">{worker.fullName}</Text>
+      <Card mt="3">
+        <Text as="p" mt="3">
+          {worker.fullName}
+        </Text>
+        <Text as="p">{worker.birthDate.toLocaleDateString('ru-RU')}</Text>
+        <Text as="p">{worker.phone}</Text>
+        <Text as="p">{getDepartmentLabel(worker.department)}</Text>
+        <Text as="p">{getPositionsLabel(worker.position)}</Text>
+        <RatingStars rating={worker.ranking} />
+      </Card>
     </>
   )
 }
