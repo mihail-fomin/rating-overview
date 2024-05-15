@@ -1,38 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Рейтинг пользователей
 
-## Getting Started
+## Описание
 
-First, run the development server:
+Это приложение представляет собой систему рейтинга пользователей. Оно позволяет добавлять, удалять и изменять пользователей (при аутентификации). Для хранения данных используется база данных PostgreSQL, а для работы с ней - ORM Prisma. Также в приложении реализована аутентификация по протоколу OAuth через Google провайдер. Приложение задеплоено на `vercel.app`, поэтому переменные среды скрыты.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Функционал
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Добавление, удаление и изменение пользователей
+- Аутентификация через Google провайдер
+- Подсветка пользователей с наивысшим рейтингом
+- Пользователи отсортированы в порядке убывания рейтинга
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Стек
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Язык программирования: JS/TS (React)
+- Фреймворк: Next.js
+- UI компоненты: Radix UI
+- Валидация формы: React Hook Form
+- База данных: PostgreSQL
+- ORM: Prisma
+- Пре-коммит хук для линтинга и prettier'а
 
-## Learn More
+## Установка и запуск
 
-To learn more about Next.js, take a look at the following resources:
+Если необходимо запустить билд для отладки:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# rating-overview
+1. Установите зависимости, запустив команду `yarn install`
+2. Сгенерируйте файлы Prisma, выполнив команду `npx prisma generate`
+3. Запустите приложение с помощью команды `yarn dev`
+4. Раздобыть переменные среды для доступка к базе данных и возможности аутентификации и вставить их
+   в `.env` файл в корневом каталоге
