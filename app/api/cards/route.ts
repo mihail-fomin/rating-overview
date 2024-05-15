@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({}, { status: 401 })
 
   const newWorker = await prisma.worker.create({
-    data: { fullName, birthDate, phone, department, position, ranking: Number(ranking) },
+    data: { fullName, birthDate, phone, department, position, ranking },
   })
 
   return NextResponse.json(newWorker, { status: 201 })
