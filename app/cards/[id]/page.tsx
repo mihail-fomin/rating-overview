@@ -23,7 +23,7 @@ const WorkerDetailPage = async ({ params }: Props) => {
   return (
     <>
       {session && (
-        <Box className="max-w-xl mx-auto">
+        <Box className="max-w-xl container px-4 mx-auto">
           <Flex gap="4" mt="2">
             <Link href={`/cards/edit/${worker.id}`}>
               <Button>Редактировать</Button>
@@ -32,16 +32,18 @@ const WorkerDetailPage = async ({ params }: Props) => {
           </Flex>
         </Box>
       )}
-      <Card mt="3" className="max-w-xl mx-auto">
-        <Text as="p" mt="3">
-          {worker.fullName}
-        </Text>
-        <Text as="p">{worker.birthDate.toLocaleDateString('ru-RU')}</Text>
-        <Text as="p">{worker.phone}</Text>
-        <Text as="p">{getDepartmentLabel(worker.department)}</Text>
-        <Text as="p">{getPositionsLabel(worker.position)}</Text>
-        <RatingStars rating={worker.ranking} />
-      </Card>
+      <Box className="container px-4">
+        <Card mt="3" className="max-w-xl">
+          <Text as="p" mt="3">
+            {worker.fullName}
+          </Text>
+          <Text as="p">{worker.birthDate.toLocaleDateString('ru-RU')}</Text>
+          <Text as="p">{worker.phone}</Text>
+          <Text as="p">{getDepartmentLabel(worker.department)}</Text>
+          <Text as="p">{getPositionsLabel(worker.position)}</Text>
+          <RatingStars rating={worker.ranking} />
+        </Card>
+      </Box>
     </>
   )
 }
