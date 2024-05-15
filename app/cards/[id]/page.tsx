@@ -23,7 +23,7 @@ const WorkerDetailPage = async ({ params }: Props) => {
   return (
     <>
       {session && (
-        <Box>
+        <Box className="max-w-xl mx-auto">
           <Flex gap="4" mt="2">
             <Link href={`/cards/edit/${worker.id}`}>
               <Button>Редактировать</Button>
@@ -32,7 +32,7 @@ const WorkerDetailPage = async ({ params }: Props) => {
           </Flex>
         </Box>
       )}
-      <Card mt="3">
+      <Card mt="3" className="max-w-xl mx-auto">
         <Text as="p" mt="3">
           {worker.fullName}
         </Text>
